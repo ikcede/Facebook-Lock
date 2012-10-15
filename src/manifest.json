@@ -1,0 +1,16 @@
+{
+  "name": "Facebook-Lock",
+  "version": "0.1",
+  "manifest_version": 2,
+  "description": "Prototype for locking Facebook.",
+  "background": {
+    "scripts": ["static/background.js"]
+  },
+  "options_page": "options.html",
+  "browser_action": {
+    "default_icon": "static/icon.png",
+	"default_popup": "popup.html"
+  },
+  "permissions": [
+	"tabs", "idle", "cookies", "*://*.facebook.com/", "background", "*://*/*"]
+}
