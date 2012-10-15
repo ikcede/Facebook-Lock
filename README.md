@@ -1,5 +1,4 @@
-Facebook-Lock
-v. 0.1
+Facebook-Lock v0.1
 =============
 
 A prototype of a Google Extension for locking Facebook against malicious friends
