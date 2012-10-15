@@ -111,16 +111,18 @@ function checkState() {
 		chrome.idle.queryState(Number(str["idle-time"])*60, function(state) { // Because it's in seconds
 			if(state=="idle") {
 			
-				alert("locked"); // Testing purposes
+				//alert("locked"); // Testing purposes
 				
 				// Steal the Facebook cookie
 				chrome.cookies.getAll({domain:".facebook.com",name:"c_user"},function(a_cookies) {
 					if(typeof a_cookies[0] == 'undefined' || !a_cookies[0]) {
 						str["fb-cookie"]="false";
+						str["locked"] = "true";
 						localStorage["Facebook-Lock"] = JSON.stringify(str);
 						return;
 					}
 					str["fb-cookie"]="true";
+					str["locked"] = "true";
 					localStorage["Facebook-Lock"] = JSON.stringify(str);
 					
 				});
