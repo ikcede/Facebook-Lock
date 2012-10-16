@@ -10,6 +10,7 @@ function activate() {
 		localStorage["Facebook-Lock"] = JSON.stringify(str);
 		
 		// Change icon
+		chrome.browserAction.setIcon({path:"static/lock.png"});
 	}
 
 }
@@ -26,6 +27,7 @@ function stop() {
 		localStorage["Facebook-Lock"] = JSON.stringify(str);
 		
 		// change icon
+		chrome.browserAction.setIcon({path:"static/unlock.png"});
 	}
 
 }
@@ -49,6 +51,7 @@ function initButtons() {
 		if(str["activated"]=="true") {
 			$("#activate").css("background","-webkit-gradient(linear, left top, left bottom, from(#BEFFBE), to(#69FF69))");
 			$("#stop").css("background","-webkit-gradient(linear, left top, left bottom, from(#FF3F3F), to(#FF5959))");
+			chrome.browserAction.setIcon({path:"static/lock.png"});
 		}
 	}
 	
