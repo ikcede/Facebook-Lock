@@ -41,7 +41,7 @@ function initButtons() {
 	
 	// Define value
 	if(typeof str == 'undefined') {
-		str = {activated:"false"};
+		str = {activated:"false",passcode:"b","idle-time":5};
 		localStorage["Facebook-Lock"] = JSON.stringify(str);
 	}
 	

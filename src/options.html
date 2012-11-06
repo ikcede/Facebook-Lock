@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head><title>My Test Extension Options</title>
+<head><title>Facebook-Lock Options</title>
 
 <script src="static/jquery.min.js"> </script>
 <script src="static/options.js"> </script>
@@ -8,32 +8,78 @@
 <style type = "text/css">
 
 body {
+	background:url('');
 	width:100%;
+	height:100%;
 	text-align:center;
 	font-family:corbel;
 }
 
+.wrapper {
+	position:fixed;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+}
+
 .header {
 	position: relative;
-	margin-top: 5%;
-	width: 80%;
-	height: 17%;
+	float:left;
+	clear:none;
+	width: 77%;
+	height: 15%;
 	background: -webkit-radial-gradient(center,circle,white,#E2E2E2);
 	margin-right: auto;
 	margin-left: auto;
-	border-radius: 25px;
+
+	border-bottom:1px solid lightGrey;
+
 }
 
 .content {
 	position:relative;
-	margin-top:3%;
-	width:80%;
-	margin-right: auto;
-	margin-left: auto;
-	height: 60%;
-	background: -webkit-radial-gradient(center,circle,white,#E2E2E2);
+	float:left;
+	clear:none;
+	width:77%;
+	height:83%;
+	background:white;
 	overflow-y:auto;
 	border-radius: 25px;
+}
+
+.sidebar {
+	position:relative;
+	float:left;
+	clear:none;
+	width:20%;
+	height:100%;
+	overflow-y:hidden;
+	overflow-x:hidden;
+	
+	background:whiteSmoke;
+	border-right:1px solid lightGrey;
+}
+
+.sidebar hr {
+	border-color:white;
+	background-color:white;
+	color:white;
+}
+
+#log-box {
+	width:90%;
+	height:80%;
+	overflow-y:auto;
+	background:whitesmoke;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+.hidden {
+	display:none;
 }
 
 </style>
@@ -42,26 +88,56 @@ body {
 
 <body>
 
-<div class = 'header'>
-<br>
-<h1>Settings</h1>
-</div>
+<div class = 'wrapper'>
 
-<div class = 'content'>
-<br>
+	<div class = 'sidebar'>
+		
+		<h3>Logs</h3><hr>
+		
+		
+		<div id="log-box">
+		
+		</div>
+		
+		<button id="clear-button">Clear</button>
+		
+	</div>
 
-Idle time:&nbsp;
-<input id="idle" type = "text" size = "5" maxLength = "5">
-</input>&nbsp;min.
-<br><br>
-
-Unlock passcode:&nbsp;
-<input id="passcode" type = "password" size = "10" maxLength = "20">
-</input>
-<br>
-<br>
-<div id="status"></div>
-<button id="save">Save</button>
+	<div class = 'header'>
+	<h1>Settings</h1>
+	</div>
+	
+	<div class = 'content'>
+		<br>
+		REMEMBER TO SAVE!
+		<br>
+		<br>
+		Idle time:&nbsp;
+		<input id="idle" type = "text" size = "5" maxLength = "5">
+		</input>&nbsp;min.
+		<br><br>
+		
+		Unlock passcode:&nbsp;
+		<input id="passcode" type = "password" size = "10" maxLength = "20">
+		</input>
+		<br><br>
+		Security Presets:<br>
+		<select id="presets">
+			<option value="default-(lax)">Default-(lax)</option>
+			<option value="normal">Normal</option>
+			<option value="high">High</option>
+			<option value="paranoid">Paranoid</option>
+		</select>
+		
+		<br><br>
+		<div id="status"></div>
+		<button id="save">Save</button>
+		
+		<div class="hidden logs">
+		
+		</div>
+		
+	</div>
 
 </div>
 
