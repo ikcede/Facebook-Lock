@@ -1,4 +1,5 @@
 // Background.js
+// Runs the idle listener and most of the main scripts
 
 // Add listeners
 chrome.tabs.onUpdated.addListener(function(tabId, something, tab) {
@@ -48,6 +49,16 @@ chrome.tabs.onUpdated.addListener(function(tabId, something, tab) {
 			str = logAttempt(false,str);
 			
 			localStorage["Facebook-Lock"] = JSON.stringify(str);
+			
+			// Open splash window
+			chrome.windows.create({
+				'url': 'splash.html', 
+				'type': 'popup', 
+				width:500,
+				height:275, 
+				top:150, 
+				left:400
+			});
 		}
 		
 	}

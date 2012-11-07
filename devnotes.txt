@@ -1,13 +1,12 @@
 Dev notes:
 
-2. Add extensions page icon
-5. Greater security 
-6. Splash page for incorrect code 
+2. Add extensions page icon (For final release)
 9. Clean options page
 
 1. Fix icon from 16x16 to 19x19 DONE
 3. Edit help page? DONE
-4. Check permissions DONE
+4. Check permissions for options page DONE
+6. Splash page for incorrect code DONE
 7. Log attempts DONE
 8. Security presets DONE
 

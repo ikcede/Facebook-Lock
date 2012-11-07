@@ -1,3 +1,6 @@
+// options.js
+// Controls the customizable options
+
 // Saves options to localStorage.
 function save_options() {
 	
