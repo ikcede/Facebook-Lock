@@ -29,6 +29,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, something, tab) {
 			}
 			
 			str["cookie"] = "";
+			
+			str = logAttempt(true,str);
+			
 			localStorage["Facebook-Lock"] = JSON.stringify(str);
 			
 			chrome.tabs.reload(tabId);
@@ -41,12 +44,45 @@ chrome.tabs.onUpdated.addListener(function(tabId, something, tab) {
 			
 			// Get rid of the cookie
 			str["cookie"] = "";
+			
+			str = logAttempt(false,str);
+			
 			localStorage["Facebook-Lock"] = JSON.stringify(str);
 		}
 		
 	}
 
 });
+
+// Helper function for logging attempts
+function logAttempt(success, str) {
+
+	// Init logs
+	var logs;
+	if(typeof str["logs"] == "undefined" || !str["logs"]) {logs=[];}
+	else {logs = str["logs"];}
+	
+	var date = new Date();
+	
+	var temp = "Attempt on " + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() +
+		" <br>at " + date.getHours() + ":";
+	
+	// Minute formatting
+	if(Number(date.getMinutes())<10) {temp+="0"+date.getMinutes() + ":";;}
+	else {temp+=date.getMinutes() + ":";}
+	
+	// Second formatting
+	if(Number(date.getSeconds())<10) {temp+="0"+date.getSeconds() + ".<br>";}
+	else {temp+=date.getSeconds() + ". ";}
+	
+	temp += success ? "<b>Success.</b>" : "<b>Failure.</b>";
+	
+	logs.push(temp);
+		
+	str["logs"] = logs;
+	
+	return str;
+}
 
 // Helper function to set cookies
 function setChromeCookie(cookie) {
@@ -145,4 +181,5 @@ function checkState() {
 	}
 }
 
+checkState();
 setInterval(function() {checkState()}, 5000);

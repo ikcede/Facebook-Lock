@@ -1,48 +1,48 @@
 // Saves options to localStorage.
 function save_options() {
-  
-  var toStore = JSON.parse(localStorage["Facebook-Lock"]);
-  
-  // Set options
-  if($("#idle").val()!="") {
-	toStore["idle-time"] = $("#idle").val();
-  }
-  else $("#idle").val(options["idle-time"]);
-  
-  if($("#passcode").val()!="") {
-	toStore["passcode"] = $("#passcode").val();
-  }
-  else $("#passcode").val(options["passcode"]);
-  
-  localStorage["Facebook-Lock"] = JSON.stringify(toStore);
-
-  // Update status to let user know options were saved.
-  $("#status").html(" Options saved. ")
-  
-  setTimeout(function() {
-    $("#status").html("");
-  }, 750);
+	
+	var toStore = JSON.parse(localStorage["Facebook-Lock"]);
+	
+	// Set options
+	if($("#idle").val()!="") {
+		toStore["idle-time"] = $("#idle").val();
+	}
+	else $("#idle").val(options["idle-time"]);
+	
+	if($("#passcode").val()!="") {
+		toStore["passcode"] = $("#passcode").val();
+	}
+	else $("#passcode").val(options["passcode"]);
+	
+	localStorage["Facebook-Lock"] = JSON.stringify(toStore);
+	
+	// Update status to let user know options were saved.
+	$("#status").html(" Options saved. ")
+	
+	setTimeout(function() {
+		$("#status").html("");
+	}, 750);
 }
 
 // Restores select box state to saved value from localStorage.
 function restore_options() {
-  var options = localStorage["Facebook-Lock"];
-  if (!options) {
-    options = {};
-  }
-  else options = JSON.parse(options);
-  
-  if(!options["idle-time"]) {
-	options["idle-time"] = "5";
-  }
-  $("#idle").val(options["idle-time"]);
-  $("#presets").val(checkSecurityLevel(options["idle-time"]));
-  
-  if(!options["passcode"]) {
-	options["passcode"] = "b";
-  }
-  $("#passcode").val(options["passcode"]);
-  localStorage["Facebook-Lock"] = JSON.stringify(options);  
+	var options = localStorage["Facebook-Lock"];
+	if (!options) {
+		options = {};
+	}
+	else options = JSON.parse(options);
+	
+	if(!options["idle-time"]) {
+		options["idle-time"] = "5";
+	}
+	$("#idle").val(options["idle-time"]);
+	$("#presets").val(checkSecurityLevel(options["idle-time"]));
+	
+	if(!options["passcode"]) {
+		options["passcode"] = "b";
+	}
+	$("#passcode").val(options["passcode"]);
+	localStorage["Facebook-Lock"] = JSON.stringify(options);  
 }
 
 function checkLock() {
@@ -87,9 +87,49 @@ function checkSecurityLevel(number) {
 	return "custom";
 }
 
+// Logs!
+function initLogs() {
+	var options = JSON.parse(localStorage["Facebook-Lock"]);
+	
+	$("#clear-button").click(function() {
+		clearLogs();
+	});
+	
+	if(!options["logs"]) {
+		options["logs"] = [];
+		localStorage["Facebook-Lock"]=JSON.stringify(options);
+		return false;
+	}
+	
+	return true;
+	
+}
+
+function clearLogs() {
+
+	if(confirm("Are you sure you want to delete all the logs?")) {
+		var options = JSON.parse(localStorage["Facebook-Lock"]);
+		options["logs"] = [];
+		localStorage["Facebook-Lock"]=JSON.stringify(options);
+		displayLogs();
+	}
+}
+
+function displayLogs() {
+	var logs = JSON.parse(localStorage["Facebook-Lock"])["logs"];
+	$("#log-box").html(""); // Clear
+	for(var i=0;i<logs.length;i++) {
+		$("#log-box").prepend(logs[i]+"<br><br>");
+	}
+	$("#log-box").prepend("<br>");
+}
+
 $(document).ready(function() {
 	checkLock();
 	restore_options();
+	
+	if(initLogs()) {displayLogs()};
+	
 	$("#save").click(function() {save_options();});
 	
 	$("#presets").mouseout(function() {

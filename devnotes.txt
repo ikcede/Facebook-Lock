@@ -1,12 +1,14 @@
 Dev notes:
 
-1. Fix icon from 16x16 to 19x19 DONE
 2. Add extensions page icon
-3. Edit help page? DONE
-4. Check permissions 
-5. Greater security
+5. Greater security 
 6. Splash page for incorrect code 
-7. Log attempts 
+9. Clean options page
+
+1. Fix icon from 16x16 to 19x19 DONE
+3. Edit help page? DONE
+4. Check permissions DONE
+7. Log attempts DONE
 8. Security presets DONE
 
 Long term:
